@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredients</title>
+</head>
+<body>
+<%-include('../partials/_navbar.ejs')%>
+
+<!-- forEach to list down all ingredients -->
+<% ingredients.forEach(ingredient =>{%>
+<li><%=ingredient.name%></li>
+<%})%>
+<br>
+<form action="/ingredients" method="post">
+<label for="name">ingredient name:</label>
+<input type="text" name="name">
+<br>
+<button type="submit">add ingredients</button>
+</form>
+
+<p>List of Ingredients</p>
+<% ingredients.forEach(ingredient =>{%>
+<form action="/ingredients/<%=ingredient._id%>?_method=DELETE" method="POST">
+    <button type="submit"><%=ingredient.name%> delete</button>
+</form>
+<%})%>
+
+</body>
+</html>

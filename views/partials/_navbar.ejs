@@ -1,0 +1,12 @@
+    <nav>
+    <% if (user) { %>
+      <h1>Welcome to the Cook Book! <%= user.username %></h1>
+      <a href="/recipes">view all recipes</a>
+      <a href="/ingredients">view all ingredients</a>
+      <a href="/auth/sign-out">Sign out</a>
+    <% } else { %>
+      <h1>Welcome to Cook Book, guest</h1>
+      <a href="/auth/sign-up">Sign up</a>
+      <a href="/auth/sign-in">Sign in</a>
+    <% } %>
+  </nav>
