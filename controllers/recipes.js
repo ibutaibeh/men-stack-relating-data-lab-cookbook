@@ -40,9 +40,10 @@ router.get('/:recipeId/edit',async(req,res)=>{
 
 
 router.put('/:recipeId',async(req,res)=>{
-     const recipe= await Recipe.findById(req.params.recipeId);
+     const recipe= await Recipe.findById(req.params.recipeId).populate('owner');
      if(req.session.user._id==recipe.owner._id){
-        await Recipe.findByIdAndUpdate(req.body.recipeId);
+        await recipe.updateOne(req.body)
+        // await Recipe.findByIdAndUpdate(req.body.recipeId);
         res.redirect('/recipes');
      }else{
         res.redirect('/recipes');
